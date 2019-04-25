@@ -1,0 +1,9 @@
+{
+  "name": "mygameserver",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "express": "4.16.4",
+    "mongoose": "^5.5.3"
+  }
+}
