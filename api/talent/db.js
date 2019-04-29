@@ -1,14 +1,16 @@
 var MongoDB = require('../../config/mongodb')
-const TABLE = 'user'
-var userDB = function() {}
-userDB.prototype.createUser = function(user) {
+const TABLE = 'talent'
+var talentDB = function() {}
+talentDB.prototype.createTalent = function(talent) {
   var req = new Promise(function(resolve, reject) {
     MongoDB.save(
       TABLE,
       {
-        username: user.username,
-        password: user.password,
-        createTime: new Date().getTime()
+        name: talent.name,
+        talentId: talent.id,
+        desc: talent.desc,
+        effects: [],
+        img: ''
       },
       (err, res) => {
         if (err) {
@@ -22,12 +24,12 @@ userDB.prototype.createUser = function(user) {
   return req
 }
 
-userDB.prototype.findUserByName = function(username) {
+talentDB.prototype.findTalentById = function(id) {
   var req = new Promise(function(resolve, reject) {
     MongoDB.findOne(
       TABLE,
       {
-        username: username
+        talentId: id
       },
       (err, res) => {
         if (err) {
@@ -40,12 +42,12 @@ userDB.prototype.findUserByName = function(username) {
   })
   return req
 }
-userDB.prototype.updateUser = function(username, option) {
+talentDB.prototype.updateTalent = function(id, option) {
   var req = new Promise(function(resolve, reject) {
     MongoDB.findOne(
       TABLE,
       {
-        username: username
+        talentId: id
       },
       option,
       (err, res) => {
@@ -59,12 +61,12 @@ userDB.prototype.updateUser = function(username, option) {
   })
   return req
 }
-userDB.prototype.deleteUser = function(username) {
+talentDB.prototype.deleteTalent = function(id) {
   var req = new Promise(function(resolve, reject) {
     MongoDB.remove(
       TABLE,
       {
-        username: username
+        talentId: id
       },
       (err, res) => {
         if (err) {
@@ -78,7 +80,7 @@ userDB.prototype.deleteUser = function(username) {
   return req
 }
 
-userDB.prototype.searchUser = function(option) {
+talentDB.prototype.searchTalent = function(option) {
   var req = new Promise(function(resolve, reject) {
     MongoDB.find(TABLE, option, (err, res) => {
       if (err) {
@@ -90,4 +92,5 @@ userDB.prototype.searchUser = function(option) {
   })
   return req
 }
+
 module.exports = new userDB()
