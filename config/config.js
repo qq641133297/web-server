@@ -3,7 +3,7 @@ AppConfig = {
   version: 'v1.0',
   appName: 'C3G',
   getApiBaseUrl() {
-    return this.appName + '/' + this.version
+    return '/' + this.appName + '/' + this.version
   },
   timezone: new Date().getTimezoneOffset(),
   timeToLocal(UTCtime) {

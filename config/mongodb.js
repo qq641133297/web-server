@@ -30,7 +30,7 @@ process.on('SIGINT', function () {
 
 var DB = function () {
     this.mongoClient = {};
-    var filename = path.join(path.dirname(__dirname), '/game-server/config/table.json');
+    var filename = path.join(path.dirname(__dirname), '../game-server/config/table.json');
     this.tabConf = JSON.parse(fs.readFileSync(path.normalize(filename)));
 };
 
